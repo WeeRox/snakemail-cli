@@ -1,17 +1,18 @@
-"""Usage: snakemail <command> [options]
+"""Usage: snakemail <command> [<args>...]
 
-Options:
-    -h, --help      show this message
-    -v, --version   show version
+useful commands:
+    account  handles connections to email accounts
 """
 
-from docopt import docopt
+import docopt
 
-arguments = docopt(__doc__)
-print(arguments)
+docopt = docopt.DocOpt(__doc__)
+arguments = docopt.get_args()
 
 if arguments['<command>'] == 'account':
-    from commands import account
-    # TODO: run the account command
+    from commands import snakemail_account
+    snakemail_account.run(arguments)
 else:
     exit('snakemail: %r is not a snakemail command. See \'snakemail --help\'.' % arguments['<command>'])
+
+docopt.handle_help()
