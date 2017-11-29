@@ -1,4 +1,5 @@
-"""Usage: snakemail <command> [<args>...]
+"""
+usage: snakemail <command> [<args>...]
 
 useful commands:
     account  handles connections to email accounts
