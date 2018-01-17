@@ -5,7 +5,7 @@ def create():
     file = open(os.path.join(os.path.dirname(sys.argv[0]), ".config"), "w")
     json_data = {
         "accounts": [],
-        "auto_login": null
+        "auto_login": None
     }
     json.dump(json_data, file)
 

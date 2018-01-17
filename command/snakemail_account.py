@@ -11,6 +11,6 @@ def run(arguments):
             from command import snakemail_account_add
             snakemail_account_add.run()
         else:
-            print('snakemail: %r is not a subcommand. See \'snakemail account --help\'.' % arguments['<args>'][0])
+            exit('snakemail: %r is not a subcommand. See \'snakemail account --help\'.' % arguments['<args>'][0])
     else:
         docopt.DocOpt(__doc__)

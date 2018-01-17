@@ -1,2 +1,2 @@
 #!/bin/sh
-python "${BASH_SOURCE%/*}/snakemail.py" "$@"
+python3 "${BASH_SOURCE%/*}/snakemail.py" "$@"
