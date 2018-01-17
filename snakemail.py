@@ -11,7 +11,7 @@ docopt = docopt.DocOpt(__doc__)
 arguments = docopt.get_args()
 
 if arguments['<command>'] == 'account':
-    from commands import snakemail_account
+    from command import snakemail_account
     snakemail_account.run(arguments)
 else:
     exit('snakemail: %r is not a snakemail command. See \'snakemail --help\'.' % arguments['<command>'])
