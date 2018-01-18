@@ -2,19 +2,16 @@ import json
 import sys, os
 from file import write_json
 
-def read(attribute):
-    json_data = json.load(config_file())
-    if attribute in json_data:
-        return json_data[attribute]
-    else:
-        return False
-
-def account(email):
+def get_account(email):
     json_data = json.load(config_file())
     for account in json_data['accounts']:
         if account['email'] == email:
             return account
     return False
+
+def get_auto_login():
+    json_data = json.load(config_file())
+    return json_data['auto_login']
 
 def config_file():
     try:

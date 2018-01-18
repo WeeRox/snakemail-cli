@@ -12,3 +12,6 @@ def login(username, password):
 
 def logout():
     mail.logout()
+
+def list():
+    return mail.list()
