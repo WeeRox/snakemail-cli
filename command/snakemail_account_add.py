@@ -12,7 +12,7 @@ def run():
             exit("This account has already been registered!")
         else:
             import getpass
-            write_json.add_account(arguments['<email>'], getpass.getpass(), input('Enter the IMAP host for your mail: '))
+            write_json.add_account(arguments['<email>'], getpass.getpass(), input('IMAP host: '))
     else:
         exit('%r is not a valid email address' % arguments['<email>'])
 
