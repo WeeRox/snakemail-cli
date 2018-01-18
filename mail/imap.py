@@ -15,3 +15,6 @@ def logout():
 
 def list():
     return mail.list()
+
+def select(mailbox="INBOX"):
+    return mail.select(mailbox)
