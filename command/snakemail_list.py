@@ -3,6 +3,7 @@ usage: snakemail list
 """
 
 import docopt
+import re
 from mail import imap
 from file import read_json
 
@@ -10,7 +11,16 @@ def run(arguments):
     arguments = docopt.DocOpt(__doc__).get_args()
     if read_json.get_auto_login():
         status, list = imap.list()
-        for x in list:
-            print(x)
+        list_pattern = re.compile(r'\((?P<flags>.*?)\) "(?P<delimiter>.*)" "(?P<name>.*)"')
+        tabs = 0;
+        for line in list:
+            flags, delimiter, name = list_pattern.match(line.decode('UTF-8')).groups()
+            flags = flags.split()
+            name = name.split(delimiter)
+            if '\HasChildren' in flags:
+                print(("\t" * tabs) + name[-1])
+                tabs += 1;
+            else:
+                print(("\t" * tabs) + name[-1])
     else:
         exit('snakemail: you are not logged in!')
