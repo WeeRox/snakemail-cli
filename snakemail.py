@@ -4,6 +4,8 @@ usage: snakemail <command> [<args>...]
 useful commands:
     account  handles connections to email accounts
     login    logs you in to your email account
+    logout   logs you out of your current account
+    list     lists your mailboxes
 """
 
 import docopt
@@ -25,6 +27,9 @@ if arguments['<command>'] == 'account':
 elif arguments['<command>'] == 'login':
     from command import snakemail_login
     snakemail_login.run(arguments)
+elif arguments['<command>'] == 'logout':
+    from command import snakemail_logout
+    snakemail_logout.run(arguments)
 elif arguments['<command>'] == 'list':
     from command import snakemail_list
     snakemail_list.run(arguments)

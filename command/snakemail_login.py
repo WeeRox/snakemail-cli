@@ -9,7 +9,6 @@ def run(arguments):
     arguments = docopt.DocOpt(__doc__).get_args()
     account = read_json.get_account(arguments['<email>'])
     if account:
-        # TODO: connect to IMAP server
         from file import write_json
         from mail import imap
         write_json.set_auto_login(account['email'])
