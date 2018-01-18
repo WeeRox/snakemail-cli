@@ -18,3 +18,6 @@ def list():
 
 def select(mailbox="INBOX"):
     return mail.select(mailbox)
+
+def status(mailbox="INBOX", names="(MESSAGES RECENT UIDNEXT UIDVALIDITY UNSEEN)"):
+    return mail.status(mailbox, names)
