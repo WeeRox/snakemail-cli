@@ -44,6 +44,9 @@ elif arguments['<command>'] == 'select':
 elif arguments['<command>'] == 'status':
     from command import snakemail_status
     snakemail_status.run(arguments)
+elif arguments['<command>'] == 'search':
+    from command import snakemail_search
+    snakemail_search.run(arguments)
 else:
     exit('snakemail: %r is not a snakemail command. See \'snakemail --help\'.' % arguments['<command>'])
 

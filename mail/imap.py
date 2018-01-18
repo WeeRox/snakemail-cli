@@ -21,3 +21,6 @@ def select(mailbox="INBOX"):
 
 def status(mailbox="INBOX", names="(MESSAGES RECENT UIDNEXT UIDVALIDITY UNSEEN)"):
     return mail.status(mailbox, names)
+
+def search(query="ALL", charset=None):
+    return mail.uid("SEARCH", charset, query)
