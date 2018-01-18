@@ -17,5 +17,5 @@ def run():
         exit('%r is not a valid email address' % arguments['<email>'])
 
 def validate_email(email):
-    import re
-    return re.match("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email);
+    import regex
+    return regex.match("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email);
