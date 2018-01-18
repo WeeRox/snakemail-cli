@@ -17,11 +17,14 @@ docopt = docopt.DocOpt(__doc__)
 arguments = docopt.get_args()
 
 auto_login = read_json.get_auto_login()
+auto_mailbox = read_json.get_auto_mailbox()
 if auto_login:
     account = read_json.get_account(auto_login)
     from mail import imap
     imap.connect(account['host'])
     imap.login(account['email'], account['password'])
+    if auto_mailbox:
+        imap.select(auto_mailbox)
 
 if arguments['<command>'] == 'account':
     from command import snakemail_account
