@@ -7,6 +7,7 @@ useful commands:
     logout   logs you out of your current account
     list     lists your mailboxes
     select   select a mailbox [default: Inbox]
+    status   show information about a mailbox [default: Inbox]
 """
 
 import docopt
@@ -37,6 +38,9 @@ elif arguments['<command>'] == 'list':
 elif arguments['<command>'] == 'select':
     from command import snakemail_select
     snakemail_select.run(arguments)
+elif arguments['<command>'] == 'status':
+    from command import snakemail_status
+    snakemail_status.run(arguments)
 else:
     exit('snakemail: %r is not a snakemail command. See \'snakemail --help\'.' % arguments['<command>'])
 
