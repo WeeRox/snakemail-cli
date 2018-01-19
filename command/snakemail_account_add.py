@@ -2,10 +2,10 @@
 usage: snakemail account add <email>
 """
 
-import docopt
+from docopt import docopt
 
-def run():
-    arguments = docopt.DocOpt(__doc__).get_args()
+def run(argv):
+    arguments = docopt(__doc__, argv=argv)
     if validate_email(arguments['<email>']):
         from file import read_json, write_json
         if read_json.get_account(arguments['<email>']):

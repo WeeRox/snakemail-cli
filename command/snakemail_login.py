@@ -2,11 +2,11 @@
 usage: snakemail login <email>
 """
 
-import docopt
+from docopt import docopt
 from file import read_json
 
-def run(arguments):
-    arguments = docopt.DocOpt(__doc__).get_args()
+def run(argv):
+    arguments = docopt(__doc__, argv=argv)
     account = read_json.get_account(arguments['<email>'])
     if account:
         from file import write_json

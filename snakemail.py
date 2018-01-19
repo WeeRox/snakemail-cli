@@ -1,5 +1,8 @@
 """
-usage: snakemail <command> [<args>...]
+usage: snakemail <command> [<args>...] [-h | --help]
+
+options:
+    -h --help  show this
 
 useful commands:
     account  handles connections to email accounts
@@ -10,11 +13,10 @@ useful commands:
     status   show information about a mailbox [default: Inbox]
 """
 
-import docopt
+from docopt import docopt
 from file import read_json
 
-docopt = docopt.DocOpt(__doc__)
-arguments = docopt.get_args()
+arguments = docopt(__doc__)
 
 auto_login = read_json.get_auto_login()
 auto_mailbox = read_json.get_auto_mailbox()
@@ -26,28 +28,30 @@ if auto_login:
     if auto_mailbox:
         imap.select(auto_mailbox)
 
-if arguments['<command>'] == 'account':
-    from command import snakemail_account
-    snakemail_account.run(arguments)
-elif arguments['<command>'] == 'login':
-    from command import snakemail_login
-    snakemail_login.run(arguments)
-elif arguments['<command>'] == 'logout':
-    from command import snakemail_logout
-    snakemail_logout.run(arguments)
-elif arguments['<command>'] == 'list':
-    from command import snakemail_list
-    snakemail_list.run(arguments)
-elif arguments['<command>'] == 'select':
-    from command import snakemail_select
-    snakemail_select.run(arguments)
-elif arguments['<command>'] == 'status':
-    from command import snakemail_status
-    snakemail_status.run(arguments)
-elif arguments['<command>'] == 'search':
-    from command import snakemail_search
-    snakemail_search.run(arguments)
-else:
-    exit('snakemail: %r is not a snakemail command. See \'snakemail --help\'.' % arguments['<command>'])
+argv = [arguments['<command>']] + arguments['<args>']
 
-docopt.handle_help()
+command = arguments['<command>']
+
+if command == 'account':
+    from command import snakemail_account
+    snakemail_account.run(argv)
+elif command == 'login':
+    from command import snakemail_login
+    snakemail_login.run(argv)
+elif command == 'logout':
+    from command import snakemail_logout
+    snakemail_logout.run(argv)
+elif command == 'list':
+    from command import snakemail_list
+    snakemail_list.run(argv)
+elif command == 'select':
+    from command import snakemail_select
+    snakemail_select.run(argv)
+elif command == 'status':
+    from command import snakemail_status
+    snakemail_status.run(argv)
+elif command == 'search':
+    from command import snakemail_search
+    snakemail_search.run(argv)
+else:
+    exit('snakemail: %r is not a snakemail command. See \'snakemail --help\'.' % command)

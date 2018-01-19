@@ -2,12 +2,12 @@
 usage: snakemail status [<mailbox>]
 """
 
-import docopt
+from docopt import docopt
 import regex
 from mail import imap
 
-def run(arguments):
-    arguments = docopt.DocOpt(__doc__).get_args()
+def run(argv):
+    arguments = docopt(__doc__, argv=argv)
     mailbox = arguments['<mailbox>']
     if mailbox:
         status, data = imap.status(mailbox)

@@ -3,14 +3,12 @@ usage: snakemail account add <email>
        snakemail account remove <email>
 """
 
-import docopt
+from docopt import docopt
 
-def run(arguments):
-    if arguments['<args>']:
-        if arguments['<args>'][0] == 'add':
-            from command import snakemail_account_add
-            snakemail_account_add.run()
-        else:
-            exit('snakemail: %r is not a subcommand. See \'snakemail account --help\'.' % arguments['<args>'][0])
+def run(argv):
+    arguments = docopt(__doc__, argv=argv)
+    if arguments['add']:
+        from command import snakemail_account_add
+        snakemail_account_add.run(argv)
     else:
-        docopt.DocOpt(__doc__)
+        exit('snakemail: %r is not a subcommand. See \'snakemail account --help\'.' % arguments['<args>'][0])

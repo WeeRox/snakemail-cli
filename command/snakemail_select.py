@@ -2,11 +2,11 @@
 usage: snakemail select [<mailbox>]
 """
 
-import docopt
+from docopt import docopt
 from mail import imap
 
-def run(arguments):
-    arguments = docopt.DocOpt(__doc__).get_args()
+def run(argv):
+    arguments = docopt(__doc__, argv=argv)
     mailbox = arguments['<mailbox>']
     if mailbox:
         status, count = imap.select(mailbox)
