@@ -1,0 +1,2 @@
+Required pip modules:
+´regex´

@@ -13,6 +13,10 @@ def get_auto_login():
     json_data = json.load(config_file())
     return json_data['auto_login']
 
+def get_auto_mailbox():
+    json_data = json.load(config_file())
+    return json_data['auto_mailbox']
+
 def config_file():
     try:
         file = open(os.path.join(os.path.dirname(sys.argv[0]), ".config"))
