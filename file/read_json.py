@@ -2,6 +2,10 @@ import json
 import sys, os
 from file import write_json
 
+def get_accounts():
+    json_data = json.load(config_file())
+    return json_data['accounts']
+
 def get_account(email):
     json_data = json.load(config_file())
     for account in json_data['accounts']:
