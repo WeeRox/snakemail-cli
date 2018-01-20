@@ -2,15 +2,15 @@
 usage: snakemail status [<mailbox>]
 """
 
-from docopt import docopt
 import regex
 from mail import imap
 
-def run(argv):
-    arguments = docopt(__doc__, argv=argv)
-    mailbox = arguments['<mailbox>']
-    if mailbox:
-        status, data = imap.status(mailbox)
+def run(arguments):
+    if '--help' in arguments or '-h' in arguments:
+        exit(__doc__.strip())
+
+    if len(arguments) > 0:
+        status, data = imap.status(arguments[0])
     else:
         status, data = imap.status()
     status_pattern = regex.compile(r'(?|(?P<name>[^"]+)|"(?P<name>[^"]+)") \((?=.*MESSAGES (?P<messages>\d+))?(?=.*RECENT (?P<recent>\d+))?(?=.*UIDNEXT (?P<uidnext>\d+))?(?=.*UIDVALIDITY (?P<uidvalidity>\d+))?(?=.*UNSEEN (?P<unseen>\d+))?.*\)')

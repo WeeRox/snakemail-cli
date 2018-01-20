@@ -2,13 +2,14 @@
 usage: snakemail list
 """
 
-from docopt import docopt
 import regex
 from mail import imap
 from file import read_json
 
-def run(argv):
-    arguments = docopt(__doc__, argv=argv)
+def run(arguments):
+    if '--help' in arguments or '-h' in arguments:
+        exit(__doc__.strip())
+
     if read_json.get_auto_login():
         status, list = imap.list()
         list_pattern = regex.compile(r'\((?P<flags>.*?)\) "(?P<delimiter>.*)" "(?P<name>.*)"')

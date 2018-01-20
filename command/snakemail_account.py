@@ -8,16 +8,16 @@ options:
     -h --help  show this
 """
 
-from docopt import docopt
-
-def run(argv):
-    arguments = docopt(__doc__, argv=argv)
-    if arguments['add']:
-        from command import snakemail_account_add
-        snakemail_account_add.run(argv)
-    elif arguments['remove']:
-        from command import snakemail_account_remove
-        snakemail_account_remove.run(argv)
+def run(arguments):
+    if len(arguments) > 0:
+        if arguments[0] == 'add':
+            from command import snakemail_account_add
+            snakemail_account_add.run(arguments[1:])
+        elif arguments[0] == 'remove':
+            from command import snakemail_account_remove
+            snakemail_account_remove.run(arguments[1:])
+        else:
+            exit(__doc__.strip())
     else:
         from file import read_json
         accounts = read_json.get_accounts()

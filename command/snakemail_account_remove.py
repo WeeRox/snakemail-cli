@@ -2,12 +2,16 @@
 usage: snakemail account remove <email>
 """
 
-from docopt import docopt
 from file import read_json, write_json
 
-def run(argv):
-    arguments = docopt(__doc__, argv=argv)
-    if read_json.get_account(arguments['<email>']):
-        write_json.remove_account(arguments['<email>'])
+def run(arguments):
+    if len(arguments) > 0:
+        if '--help' in arguments or '-h' in arguments:
+            exit(__doc__.strip())
+
+        if read_json.get_account(arguments[0]):
+            write_json.remove_account(arguments[0])
+        else:
+            exit('snakemail: there is no account with email address %r' % arguments[0])
     else:
-        exit('snakemail: there is no account with email address %r' % arguments['<email>'])
+        exit(__doc__.strip())

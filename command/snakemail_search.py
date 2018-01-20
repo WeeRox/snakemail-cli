@@ -2,15 +2,15 @@
 usage: snakemail search [<query>]
 """
 
-from docopt import docopt
 import regex
 from mail import imap
 
-def run(argv):
-    arguments = docopt(__doc__, argv=argv)
-    query = arguments['<query>']
-    if query:
-        status, data = imap.search(query)
+def run(arguments):
+    if '--help' in arguments or '-h' in arguments:
+        exit(__doc__.strip())
+
+    if len(arguments) > 0:
+        status, data = imap.search(arguments[0])
     else:
         status, data = imap.search()
 

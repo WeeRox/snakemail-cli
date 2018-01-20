@@ -2,19 +2,22 @@
 usage: snakemail account add <email>
 """
 
-from docopt import docopt
+def run(arguments):
+    if len(arguments) > 0:
+        if '--help' in arguments or '-h' in arguments:
+            exit(__doc__.strip())
 
-def run(argv):
-    arguments = docopt(__doc__, argv=argv)
-    if validate_email(arguments['<email>']):
-        from file import read_json, write_json
-        if read_json.get_account(arguments['<email>']):
-            exit("snakemail: this account has already been registered!")
+        if validate_email(arguments[0]):
+            from file import read_json, write_json
+            if read_json.get_account(arguments[0]):
+                exit("snakemail: this account has already been registered!")
+            else:
+                import getpass
+                write_json.add_account(arguments[0], getpass.getpass(), input('IMAP host: '))
         else:
-            import getpass
-            write_json.add_account(arguments['<email>'], getpass.getpass(), input('IMAP host: '))
+            exit('snakemail: %r is not a valid email address' % arguments[0])
     else:
-        exit('snakemail: %r is not a valid email address' % arguments['<email>'])
+        exit(__doc__.strip())
 
 def validate_email(email):
     import regex
