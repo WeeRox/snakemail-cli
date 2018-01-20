@@ -15,6 +15,14 @@ def add_account(email, password, host):
     json_data['accounts'].append({"email": email, "password": password, "host": host})
     json.dump(json_data, file)
 
+def remove_account(email):
+    from file import read_json
+    account = read_json.get_account(email)
+
+    json_data, file = config_file()
+    json_data['accounts'].remove(account)
+    json.dump(json_data, file)
+
 def set_auto_login(email):
     json_data, file = config_file()
     json_data['auto_login'] = email

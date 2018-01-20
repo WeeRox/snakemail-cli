@@ -9,12 +9,12 @@ def run(argv):
     if validate_email(arguments['<email>']):
         from file import read_json, write_json
         if read_json.get_account(arguments['<email>']):
-            exit("This account has already been registered!")
+            exit("snakemail: this account has already been registered!")
         else:
             import getpass
             write_json.add_account(arguments['<email>'], getpass.getpass(), input('IMAP host: '))
     else:
-        exit('%r is not a valid email address' % arguments['<email>'])
+        exit('snakemail: %r is not a valid email address' % arguments['<email>'])
 
 def validate_email(email):
     import regex
