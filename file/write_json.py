@@ -1,8 +1,7 @@
 import json
-import sys, os
 
 def create():
-    file = open(os.path.join(os.path.dirname(sys.argv[0]), ".config"), "w")
+    json_data, file = config_file()
     json_data = {
         "accounts": [],
         "auto_login": None,
@@ -34,6 +33,7 @@ def set_auto_mailbox(mailbox):
     json.dump(json_data, file)
 
 def config_file():
+    import sys, os
     try:
         file = open(os.path.join(os.path.dirname(sys.argv[0]), ".config"))
     except FileNotFoundError:

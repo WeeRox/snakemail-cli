@@ -18,8 +18,8 @@ import sys
 arguments = sys.argv[1:]
 
 auto_login = read_json.get_auto_login()
-auto_mailbox = read_json.get_auto_mailbox()
 if auto_login:
+    auto_mailbox = read_json.get_auto_mailbox()
     account = read_json.get_account(auto_login)
     from mail import imap
     imap.connect(account['host'])

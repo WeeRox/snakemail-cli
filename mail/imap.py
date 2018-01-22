@@ -23,4 +23,13 @@ def status(mailbox="INBOX", names="(MESSAGES RECENT UIDNEXT UIDVALIDITY UNSEEN)"
     return mail.status(mailbox, names)
 
 def search(query="ALL", charset=None):
+    return mail.search(charset, query)
+
+def uid_search(query="ALL", charset=None):
     return mail.uid("SEARCH", charset, query)
+
+def fetch(message_set, message_parts):
+    return mail.fetch(message_set, message_parts)
+
+def uid_fetch(message_set, message_parts):
+    return mail.uid("FETCH", message_set, message_parts)

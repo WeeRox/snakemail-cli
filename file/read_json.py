@@ -1,6 +1,4 @@
 import json
-import sys, os
-from file import write_json
 
 def get_accounts():
     json_data = json.load(config_file())
@@ -22,10 +20,12 @@ def get_auto_mailbox():
     return json_data['auto_mailbox']
 
 def config_file():
+    import sys, os
     try:
         file = open(os.path.join(os.path.dirname(sys.argv[0]), ".config"))
     except FileNotFoundError:
         # file was not found, create empty file
+        from file import write_json
         write_json.create()
         file = open(os.path.join(os.path.dirname(sys.argv[0]), ".config"))
 
