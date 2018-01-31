@@ -12,7 +12,7 @@ def run(arguments):
 
     if read_json.get_auto_login():
         status, list = imap.list()
-        list_pattern = regex.compile(r'\((?P<flags>.*?)\) "(?P<delimiter>.*)" "(?P<name>.*)"')
+        list_pattern = regex.compile(r'\((?P<flags>.*?)\) "(?P<delimiter>.*)" (?|(?P<name>[^"]+)|"(?P<name>[^"]+)")')
         tabs = 0;
         for line in list:
             flags, delimiter, name = list_pattern.match(line.decode('UTF-8')).groups()
